@@ -46,6 +46,12 @@ def main():
                 print('Game over!')
                 sys.exit()
 
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    # kill() is a built-in method to pygame
+                    shot.kill()
+                    asteroid.split()
+
         screen.fill('black')
 
         for obj in drawable:
