@@ -14,6 +14,12 @@ def main():
     y = SCREEN_HEIGHT / 2
     player = Player(x, y)
 
+    # Group class holds and manages multiple objects
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    updatable.add(player)
+    drawable.add(player)
+
     running = True
     while running:
         # check if user has closed the window
@@ -21,8 +27,13 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
+        for obj in updatable:
+            obj.update(dt)
+
         screen.fill('black')
-        player.draw(screen)
+
+        for obj in drawable:
+            obj.draw(screen)
         
         pygame.display.flip()
 
